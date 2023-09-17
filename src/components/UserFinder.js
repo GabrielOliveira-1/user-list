@@ -3,6 +3,7 @@ import { Fragment, useState, useEffect, Component } from "react";
 import Users from "./Users";
 import classes from "./UserFinder.module.css";
 import UsersContext from "../Store/Users-context";
+import ErrorBoundary from "./ErrorBoundary";
 
 class UserFinder extends Component {
   static contextType = UsersContext; // In class-based components, we can only connect a class based component to one context
@@ -40,7 +41,9 @@ class UserFinder extends Component {
         <div className={classes.finder}>
           <input type="search" onChange={this.searchChangeHandler.bind(this)} />
         </div>
-        <Users users={this.state.filteredUsers} />
+        <ErrorBoundary>
+          <Users users={this.state.filteredUsers} />
+        </ErrorBoundary>
       </Fragment>
     );
   }

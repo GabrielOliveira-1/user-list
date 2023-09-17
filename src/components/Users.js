@@ -13,6 +13,12 @@ class Users extends Component {
     }; // So in Class-based components, state is always an object
   }
 
+  componentDidUpdate() {
+    if (this.props.users.length === 0) {
+      throw new Error("No users provided!");
+    }
+  }
+
   toggleUsersHandler() {
     this.setState((curState) => {
       return { showUsers: !curState.showUsers };
